@@ -3,24 +3,20 @@
 	<script type="text/javascript" src="jquery-1.7.1.min.js"></script>
 	<script type="text/javascript" src="jquery.ajax-cross-origin.min.js"></script>
     	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+	   <link rel="apple-touch-icon" href="icon.png" >
 </head>
 
 <body>
-<input type="button" id="btn" value="Zeig die Ampel" style="height:40px;">
-<br/><br/>
-<div id="test" />
-
+	<div style="width:320;">
+<br/>
+<input type="button" id="btn" value="Zeig die Ampel" style="height:40px; margin:auto;"><br/>
+<div id="test" style="margin:auto" />
+	</div>
 <script type="text/javascript">
 $(function() {
-	$( '#service' ).on( 'change', function(){
-		$( '#url' ).val( $( this ).val() );
-	});
-	
-	$( '#url' ).val( $( '#service' ).val() );
-	
 	$( '#btn' ).click(function(){
 		var url = $( '#url' ).val()
-		
+		 $( '#test' ).html("");
 		$.ajax({
 		  crossOrigin: true,
 		  url: "https://skydive-leipzig.de",
