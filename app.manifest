@@ -1,6 +1,9 @@
-CACHE MANIFEST 
+CACHE MANIFEST
+
 NETWORK:
+https://skydive-leipzig.de
 https://skydive-leipzig.de/
+
 CACHE:
 jquery-1.7.1.min.js
 jquery.ajax-cross-origin.min.js
