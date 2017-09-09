@@ -1,0 +1,57 @@
+<html>
+<head>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="jquery.ajax-cross-origin.min.js"></script>
+</head>
+
+<body>
+<input type="button" id="btn" value="Zeig die Ampel" style="height:40px;">
+<br/><br/>
+<div id="test" />
+
+<script type="text/javascript">
+$(function() {
+	$( '#service' ).on( 'change', function(){
+		$( '#url' ).val( $( this ).val() );
+	});
+	
+	$( '#url' ).val( $( '#service' ).val() );
+	
+	$( '#btn' ).click(function(){
+		var url = $( '#url' ).val()
+		
+		$.ajax({
+		  crossOrigin: true,
+		  url: "https://skydive-leipzig.de",
+		  //dataType: "json", //no need. if you use crossOrigin, the dataType will be override with "json"
+		  //charset: 'ISO-8859-1', //use it to define the charset of the target url
+		  context: {},
+		  success: function(data) {
+			  //alert(data);
+			  regex = RegExp('(<div style="line-height:0px;padding:0;text-decoration:none;">).*(red-off|red).*(yellow-off|yellow).*(green-off|green)(.*)<\/div>', "g");
+				var result = data.match(regex);
+			  $( '#test' ).html($(result[0].toString()));
+			}
+		})
+		.done(function( data, textStatus, jqXHR ) {
+			//alert(data);
+		});
+	});
+	
+/*########################################################
+	before the use of $.getJSON you need to set {crossOrigin: true} through $.ajaxSetup
+	
+	$.ajaxSetup({
+		crossOrigin: true
+	});
+	
+	$.getJSON(url, null, function(data) {
+		$( '#test' ).html(data);
+	});
+########################################################*/
+	
+}); 
+</script>
+
+</body>
+</html>
